@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu, shell } = require('electron')
+const githubLink = require('./package.json')
 
 function createWindow () {
   // Create the browser window.
@@ -15,6 +16,47 @@ function createWindow () {
 
   // Open the DevTools.
   win.webContents.openDevTools()
+
+  // Handles the program's menu bar
+  const dcrMenu = [
+      {
+        label: app.name,
+        submenu: [
+            {
+                // Quits the program (duh)
+                label: 'Quit',
+                click() {
+                    app.quit()
+                }
+            }
+        ]
+      },   
+      {
+        label: 'File',
+        submenu: [
+            {
+                // Opens the folder containing the RPG files
+                label: 'Import RPG',
+                click() {
+                    shell.openPath('./rpgs')
+                }
+            }
+        ]
+      },
+      {
+          label: 'Help',
+          submenu: [
+            {
+                label: 'About',
+                click() {
+                    shell.openExternal(githubLink.homepage)
+                }
+            }
+          ]
+      }
+  ]
+  const menu = Menu.buildFromTemplate(dcrMenu)
+  Menu.setApplicationMenu(menu)
 }
 
 // This method will be called when Electron has finished
