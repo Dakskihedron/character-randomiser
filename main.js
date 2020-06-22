@@ -1,61 +1,55 @@
 const { app, BrowserWindow, Menu, shell } = require('electron')
 const githubLink = require('./package.json')
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 400,
+    height: 400,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
   // and load the index.html of the app.
-  win.loadFile('index.html')
+  win.loadFile('src/index.html')
 
   // Open the DevTools.
   win.webContents.openDevTools()
 
   // Handles the program's menu bar
-  const dcrMenu = [
-      {
-        label: app.name,
-        submenu: [
-            {
-                // Quits the program (duh)
-                label: 'Quit',
-                click() {
-                    app.quit()
-                }
-            }
-        ]
-      },   
-      {
-        label: 'File',
-        submenu: [
-            {
-                // Opens the folder containing the RPG files
-                label: 'Import RPG',
-                click() {
-                    shell.openPath('./rpgs')
-                }
-            }
-        ]
-      },
-      {
-          label: 'Help',
-          submenu: [
-            {
-                label: 'About',
-                click() {
-                    shell.openExternal(githubLink.homepage)
-                }
-            }
-          ]
-      }
-  ]
-  const menu = Menu.buildFromTemplate(dcrMenu)
+  const menu = Menu.buildFromTemplate([
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Import RPG',
+          click() {
+            shell.openPath('./rpgs')
+          }
+        },
+        { type: separator },
+        {
+          label: 'Quit',
+          click() {
+            app.quit()
+          }
+        }
+      ]
+    },
+    {
+      label: 'Help',
+      submenu: [
+        {
+          label: 'About',
+          click() {
+            shell.openExternal(githubLink.homepage)
+          }
+        }
+      ]
+    }
+  ])
   Menu.setApplicationMenu(menu)
 }
 
