@@ -7,7 +7,20 @@ body {
     background-color: #5fc9b4;
 }
 
-h1 {
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+#select-container {
+    transform: translateY(100px);
+}
+
+#button-container {
+    transform: translateY(200px);
+}
+
+#button {
     font-family: "Roboto", sans-serif;
-    text-align: center;
 }
