@@ -26,10 +26,9 @@ function createWindow() {
         {
           label: 'Import RPG',
           click() {
-            shell.openPath('./rpgs')
+            shell.openPath('rpgs')
           }
         },
-        { type: separator },
         {
           label: 'Quit',
           click() {
@@ -51,6 +50,25 @@ function createWindow() {
     }
   ])
   Menu.setApplicationMenu(menu)
+
+  // Adds files in rpgs folder to select element
+  win.webContents.once('dom-ready', () => {
+    win.webContents.executeJavaScript(`
+      const fs = require('fs')
+      fs.readdir('rpgs', (err, files) => {
+        if (err) return console.error(err)
+        files.forEach(file => { 
+          if (!file.endsWith('.txt')) return // Ignore files that don't end in specific extension
+          let rpgName = file.split('.')[0]
+          const rpgSelect = document.getElementById("rpg-selection")
+          let option = document.createElement("option")
+          option.text = rpgName
+          rpgSelect.add(option)
+          console.log(rpgName + " file loaded") // Dev Tools console log
+        })
+      })
+    `)
+  })
 }
 
 // This method will be called when Electron has finished
