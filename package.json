@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Dakskihedron/Daks-Character-Randomiser#readme",
   "devDependencies": {
     "electron": "^9.0.4"
+  },
+  "dependencies": {
+    "js-yaml": "^3.14.0"
   }
 }
