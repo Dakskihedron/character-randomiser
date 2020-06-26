@@ -13,12 +13,23 @@ body {
     align-items: center;   
 }
 
+#output-container {
+    margin: 10px;
+}
+
+#output {
+    resize: none;
+    outline: none;
+}
+
 #select-container {
-    transform: translateY(100px);
+    margin: 10px;
+    transform: translateY(20px);
 }
 
 #button-container {
-    transform: translateY(200px);
+    margin: 10px;
+    transform: translateY(20px);
 }
 
 #button {
