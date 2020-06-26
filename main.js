@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu, shell } = require('electron')
 const githubLink = require('./package.json')
+const yaml = require('js-yaml')
 
 function createWindow() {
   // Create the browser window.
