@@ -27,11 +27,11 @@ body {
     transform: translateY(20px);
 }
 
-#button-container {
+#gen-button-container {
     margin: 10px;
     transform: translateY(20px);
 }
 
-#button {
+#gen-button {
     font-family: "Roboto", sans-serif;
 }

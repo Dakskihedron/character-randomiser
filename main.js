@@ -3,7 +3,7 @@ const githubLink = require('./package.json')
 const yaml = require('js-yaml')
 
 function createWindow() {
-  // Create the browser window.
+  // Create the browser window
   const win = new BrowserWindow({
     width: 400,
     height: 400,
@@ -13,10 +13,10 @@ function createWindow() {
     }
   })
 
-  // and load the index.html of the app.
+  // Loads the index.html file
   win.loadFile('src/index.html')
 
-  // Open the DevTools.
+  // Open the DevTools
   win.webContents.openDevTools()
 
   // Handles the program's menu bar
