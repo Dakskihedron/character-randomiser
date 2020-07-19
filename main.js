@@ -1,3 +1,4 @@
+const { join } = require('path')
 const { app, BrowserWindow, Menu, shell } = require('electron')
 const githubLink = require('./package.json')
 
@@ -26,20 +27,19 @@ function createWindow() {
         {
           label: 'Import RPG',
           click() {
-            shell.openPath('rpgs')
+            shell.openPath(join(__dirname, 'rpgs'))
           }
         },
-        {
-          label: 'Quit',
-          click() {
-            app.quit()
-          }
-        }
+        { role: 'quit'}
       ]
     },
     {
       label: 'Help',
       submenu: [
+        {
+          label: 'Toggle DevTools',
+          role: 'toggleDevTools'
+        },
         {
           label: 'About',
           click() {
@@ -54,8 +54,8 @@ function createWindow() {
   // Adds files in rpgs folder to select element
   win.webContents.once('dom-ready', () => {
     win.webContents.executeJavaScript(`
-      const fs = require('fs')
-      fs.readdir('rpgs', (err, files) => {
+      const { readdir } = require('fs')
+      readdir('rpgs', (err, files) => {
         if (err) return console.error(err)
         files.forEach(file => { 
           if (!file.endsWith('.txt')) return // Ignore files that don't end in specific extension
