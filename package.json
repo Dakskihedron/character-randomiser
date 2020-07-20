@@ -20,6 +20,7 @@
     "electron": "^9.0.4"
   },
   "dependencies": {
-    "js-yaml": "^3.14.0"
+    "js-yaml": "^3.14.0",
+    "lodash": ">=4.17.19"
   }
 }
