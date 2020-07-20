@@ -1,3 +1,2 @@
 # Daks-Character-Randomiser
-A WIP program for creating random RPG characters.
-Written in JavaScript. Uses Electron.
+Currenlty a WIP program for generating randomised RPG character stats. The program is written in JavaScript and uses the Electron framework to handle the graphical user-interface and other interactive elements.
