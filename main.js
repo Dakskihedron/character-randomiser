@@ -58,7 +58,7 @@ function createWindow() {
       readdir('rpgs', (err, files) => {
         if (err) return console.error(err)
         files.forEach(file => { 
-          if (!file.endsWith('.txt')) return // Ignore files that don't end in specific extension
+          if (!file.endsWith('.json')) return // Ignore files that don't end in specific extension
           let rpgName = file.split('.')[0]
           const rpgSelect = document.getElementById("rpg-selection")
           let option = document.createElement("option")
