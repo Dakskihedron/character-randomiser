@@ -17,7 +17,7 @@ function createWindow() {
   win.loadFile('src/index.html')
 
   // Open the DevTools
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // Handles the program's menu bar
   const menu = Menu.buildFromTemplate([
