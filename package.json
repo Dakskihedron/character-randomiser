@@ -1,21 +1,21 @@
 {
-  "name": "daks-character-randomiser",
+  "name": "character-randomiser",
   "version": "1.0.0",
-  "description": "A program for generating randomised RPG characters.",
+  "description": "A program for randomly generating character stats for role-playing games.",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dakskihedron/Daks-Character-Randomiser.git"
+    "url": "git+https://github.com/Dakskihedron/character-randomiser.git"
   },
   "author": "Dakskihedron (Nathan Zhou)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Dakskihedron/Daks-Character-Randomiser/issues"
+    "url": "https://github.com/Dakskihedron/character-randomiser/issues"
   },
-  "homepage": "https://github.com/Dakskihedron/Daks-Character-Randomiser#readme",
+  "homepage": "https://github.com/Dakskihedron/character-randomiser#readme",
   "devDependencies": {
     "electron": "^9.0.4"
   },
