@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Dakskihedron/character-randomiser#readme",
   "devDependencies": {
-    "electron": "^9.0.4"
+    "electron": "^9.1.1"
   },
   "dependencies": {
     "lodash": ">=4.17.19"
