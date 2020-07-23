@@ -1,9 +1,6 @@
 {
-    "strength": "2",
-    "perception": "10",
-    "endurance": "4",
-    "chrisma": "7",
-    "intelligence": "1",
-    "agility": "4",
-    "luck": "8"
+    "strength": "10",
+    "stamina": "10",
+    "speech": "10",
+    "luck": "10"
 }
