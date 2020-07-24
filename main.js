@@ -14,7 +14,7 @@ function createWindow() {
   })
 
   // Loads the index.html file
-  win.loadFile('src/index.html')
+  win.loadFile(join(__dirname, 'src', 'index.html'))
 
   // Open the DevTools
   // win.webContents.openDevTools()
