@@ -32,7 +32,10 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "asar": true,
+        "extraResource": "resources/rpgs"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
