@@ -7,7 +7,7 @@ const output = document.getElementById('output')
 
 genButton.addEventListener('click', () => {
     let rpgName = rpgSelect.options[rpgSelect.selectedIndex].value
-    let rpgFile = require(join(__dirname, '../rpgs', `${rpgName}.json`))
+    let rpgFile = require(join(__dirname, '../resources/rpgs', `${rpgName}.json`))
     const newline = '\n'
     let valuesList = []
     Object.keys(rpgFile).forEach(function(k) {
