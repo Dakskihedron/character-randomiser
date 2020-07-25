@@ -2,7 +2,7 @@
   "name": "character-randomiser",
   "version": "0.1.0",
   "description": "A program for randomly generating character stats for role-playing games.",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
