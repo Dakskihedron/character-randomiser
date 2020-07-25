@@ -1,6 +1,6 @@
 const { join } = require('path')
 const { app, BrowserWindow, Menu, shell } = require('electron')
-const githubLink = require('../package.json')
+const githubLink = require('./package.json')
 
 function createWindow() {
   // Create the browser window
@@ -14,7 +14,7 @@ function createWindow() {
   })
 
   // Loads the index.html file
-  win.loadFile(join(__dirname, 'index.html'))
+  win.loadFile(join(__dirname, 'src', 'index.html'))
 
   // Open the DevTools
   // win.webContents.openDevTools()
@@ -27,7 +27,7 @@ function createWindow() {
         {
           label: 'Import RPG',
           click() {
-            shell.openPath(join(__dirname, '../resources', 'rpgs'))
+            shell.openPath(join(__dirname, 'resources', 'rpgs'))
           }
         },
         { role: 'quit'}
@@ -55,7 +55,7 @@ function createWindow() {
   win.webContents.once('dom-ready', () => {
     win.webContents.executeJavaScript(`
       const { readdir } = require('fs')
-      readdir('./resources/rpgs', (err, files) => {
+      readdir('resources/rpgs', (err, files) => {
         if (err) return console.error(err)
         files.forEach(file => { 
           if (!file.endsWith('.json')) return // Ignore files that don't end in specific extension
