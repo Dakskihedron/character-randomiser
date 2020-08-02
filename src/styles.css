@@ -26,3 +26,8 @@ body {
     margin: 10px;
     transform: translateY(20px);
 }
+
+.stat-dropdown {
+    height: 10px;
+    background-color: red;
+}
