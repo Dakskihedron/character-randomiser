@@ -5,8 +5,8 @@ const githubLink = require('../package.json')
 function createWindow() {
   // Create the browser window
   const win = new BrowserWindow({
-    width: 400,
-    height: 400,
+    width: 600,
+    height: 300,
     resizable: false,
     webPreferences: {
       nodeIntegration: true
