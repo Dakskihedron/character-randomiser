@@ -8,18 +8,15 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   </head>
   <body>
-    <!-- Drop down -->
-    <div id="select-container" class="container">
-      <select id="rpg-selection">
-        <option disabled select value>Select a RPG...</option>
+    <!-- Generator -->
+    <div id="generator-container">
+      <select id="rpg-select">
+        <option disabled select value>Select a RPG</option>
       </select>
+      <button id="generate-button">GENERATE</button>
     </div>
-    <!-- Generate button -->
-    <div id="gen-button-container" class="container">
-      <button id="gen-button" type="button">GENERATE</button>
-    </div>
-    <!-- Output container -->
-    <div id="output-container" class="container">
+    <!-- Output -->
+    <div id="output-container">
     </div>
     <!-- JavaScript -->
     <script src="render.js"></script>
