@@ -5,8 +5,8 @@ const githubLink = require('../package.json')
 function createWindow() {
   // Create the browser window
   const win = new BrowserWindow({
-    width: 600,
-    height: 300,
+    width: 500,
+    height: 600,
     resizable: false,
     webPreferences: {
       nodeIntegration: true
@@ -58,13 +58,13 @@ function createWindow() {
       readdir((join(__dirname, '../resources', 'rpgs')), (err, files) => {
         if (err) return console.error(err)
         files.forEach(file => { 
-          if (!file.endsWith('.json')) return // Ignore files that don't end in specific extension
+          if (!file.endsWith('.json')) return
           let rpgName = file.split('.')[0]
-          const rpgSelect = document.getElementById("rpg-selection")
-          let option = document.createElement("option")
-          option.text = rpgName
-          rpgSelect.add(option)
-          console.log(rpgName + " file loaded") // Dev Tools console log
+          const rpgSelect = document.getElementById("rpg-select")
+          let newOption = document.createElement("option")
+          newOption.text = rpgName
+          rpgSelect.add(newOption)
+          console.log(rpgName + " file loaded")
         })
       })
     `)
