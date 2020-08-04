@@ -1,33 +1,60 @@
 body {
+    margin: 0px;
     background-color: #5fc9b4;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;   
+#generator-container {
+    width: 500px;
+    height: 250px;
 }
 
-#output-container {
-    margin: 10px;
+#rpg-select {
+    position: absolute;
+    margin: 0px auto;
+    width: 250px;
+    height: 50px;
+    left: 125px;
+    top: 60px;
+    font-size: 16px;
 }
 
-#output {
-    resize: none;
+#generate-button {
+    position: absolute;
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 50px;
+    width: 200px;
+    left: 150px;
+    top: 140px;
+    cursor: pointer;
     outline: none;
 }
 
-#select-container {
-    margin: 10px;
-    transform: translateY(20px);
-}
-
-#gen-button-container {
-    margin: 10px;
-    transform: translateY(20px);
-}
-
-.stat-dropdown {
-    height: 10px;
+.collapsible {
     background-color: red;
+    cursor: pointer;
+    height: 20px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+}
+
+.active, .collapsible:hover {
+    background-color: green;
+}
+
+.content {
+    height: 50px;
+    background-color: white;
+    font-size: 16px;
+    overflow: hidden;
+    display: block;
 }
