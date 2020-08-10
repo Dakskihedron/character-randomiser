@@ -13,7 +13,11 @@ genButton.addEventListener('click', () => {
   let filename = rpgSelect.options[rpgSelect.selectedIndex].value
   let file = require(join(__dirname, '../resources/rpgs', `${filename}.json`))
   Object.keys(file).forEach(function(k) {
-    parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
+    if (Array.isArray(file[k])) { // Checks if data is an array
+      parsedList.push(`${k}: ${file[k][Math.floor(Math.random() * file[k].length)]}`)
+    } else {
+      parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
+    }
   })
   if (parsedList) {
     // Create collapsible
