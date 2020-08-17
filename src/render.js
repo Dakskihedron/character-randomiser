@@ -1,22 +1,28 @@
 const { join } = require('path')
-const { unlink } = require('fs')
 
 // Declare HTML elements
 const genButton = document.getElementById('generate-button')
 const rpgSelect = document.getElementById('rpg-select')
 const output = document.getElementById('output-container')
 
-// Handles the generate button
+// Handles the generate button, randomiser, and output
 genButton.addEventListener('click', () => {
-  const nl = '\n'
   let parsedList = []
   let filename = rpgSelect.options[rpgSelect.selectedIndex].value
   let file = require(join(__dirname, '../resources/rpgs', `${filename}.json`))
   Object.keys(file).forEach(function(k) {
     if (Array.isArray(file[k])) { // Checks if data is an array
-      parsedList.push(`${k}: ${file[k][Math.floor(Math.random() * file[k].length)]}`)
-    } else {
-      parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
+      if (file[k].length) { // Checks if array is empty
+        parsedList.push(`${k}: ${file[k][Math.floor(Math.random() * file[k].length)]}`)
+      } else { // If the array is empty, throw an error message
+        parsedList.push(`${k}: ERROR: The array is empty.`)
+      }
+    } else { // If data is not an array, then it is a number value
+      if (Number.isInteger(file[k])) { // Checks if data is an integer
+        parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
+      } else { // If the data is not an integer, throw an error message
+        parsedList.push(`${k}: ERROR: A valid integer was not provided.`)
+      }
     }
   })
   if (parsedList) {
@@ -37,7 +43,7 @@ genButton.addEventListener('click', () => {
       li.appendChild(document.createTextNode(element))
       ul.appendChild(li)
     })
-    // Append stuff
+    // Collapsible creation
     content.appendChild(ul)
     output.appendChild(collapsible)
     output.appendChild(content)
