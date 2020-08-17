@@ -1,10 +1,10 @@
 {
-    "strength": "10",
-    "perception": "10",
-    "endurance": "10",
-    "chrisma": "10",
-    "intelligence": "10",
-    "agility": "10",
-    "luck": "10",
+    "strength": 10,
+    "perception": 10,
+    "endurance": 10,
+    "chrisma": 10,
+    "intelligence": 10,
+    "agility": 10,
+    "luck": 10,
     "skills": ["Barter", "Energy Weapons", "Explosives", "Lockpicks"]
 }
