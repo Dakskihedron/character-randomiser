@@ -14,6 +14,8 @@ class RPGCollapsible {
   present() {
     if (this.parsedList) {
       // Create collapsible
+      const collDiv = document.createElement('div')
+      collDiv.setAttribute('class', 'coll-div')
       const collapsible = document.createElement('button')
       collapsible.setAttribute('class', 'collapsible')
       // Create collapsible content container
@@ -32,8 +34,9 @@ class RPGCollapsible {
       })
       // Append the list element to the content container and append the collapsible and content container to the HTML document
       content.appendChild(ul)
+      collDiv.appendChild(collapsible)
       output.insertBefore(content, output.firstChild)
-      output.insertBefore(collapsible, output.firstChild)
+      output.insertBefore(collDiv, output.firstChild)
     } else {
       alert("ERROR: An exception has occurred!")
     }
@@ -68,11 +71,13 @@ genButton.addEventListener('click', () => {
 document.querySelector('#output-container').addEventListener('click', function(e) {
   if (e.target.classList.contains('collapsible')) {
     e.target.classList.toggle('active')
-    let content = e.target.nextElementSibling
+    let content = e.target.parentElement.nextElementSibling
     if (content.style.display === 'block') {
       content.style.display = 'none'
+      e.target.parentElement.style.marginBottom = '10px'
     } else {
       content.style.display = 'block'
+      e.target.parentElement.style.marginBottom = '0px'
     }
   }
 })
