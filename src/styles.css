@@ -1,10 +1,23 @@
 body {
     margin: 0px;
-    background-color: #5fc9b4;
+    background-color: #DDDDDD;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
 #generator-container {
-    width: 500px;
+    width: 100%;
     height: 250px;
 }
 
@@ -16,6 +29,7 @@ body {
     left: 125px;
     top: 60px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 #generate-button {
@@ -28,34 +42,68 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    font-weight: bold;
     height: 50px;
     width: 200px;
     left: 150px;
     top: 140px;
     cursor: pointer;
     outline: none;
+    border-radius: 5px;
+}
+
+#generate-button:hover {
+    background-color: #689E61;
+    color: white;
+}
+
+#output-container {
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+}
+
+.coll-div {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 }
 
 .collapsible {
-    background-color: red;
+    background-color: #C3C3C3;
+    color: black;
     cursor: pointer;
-    height: 20px;
+    height: 40px;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
     font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px 5px 5px 5px;
+    padding-left: 15px;
 }
 
 .active, .collapsible:hover {
-    background-color: green;
+    color: white;
+    background-color: #9E6168;
+}
+
+.active {
+    border-radius: 5px 5px 0px 0px;
 }
 
 .content {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 90%;
     background-color: white;
     font-size: 16px;
     overflow: hidden;
     display: none;
+    border-radius: 0px 0px 5px 5px;
 }
 
 .list {
