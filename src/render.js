@@ -5,7 +5,42 @@ const genButton = document.getElementById('generate-button')
 const rpgSelect = document.getElementById('rpg-select')
 const output = document.getElementById('output-container')
 
-// Handles the generate button, randomiser, and output
+// RPG collapsible class
+class RPGCollapsible {
+  constructor(parsedList, filename) {
+    this.parsedList = parsedList
+    this.filename = filename
+  }
+  present() {
+    if (this.parsedList) {
+      // Create collapsible
+      const collapsible = document.createElement('button')
+      collapsible.setAttribute('class', 'collapsible')
+      // Create collapsible content container
+      const content = document.createElement('div')
+      content.setAttribute('class', 'content')
+      // Set collapsible title
+      let collTitle = document.createTextNode(this.filename)
+      collapsible.appendChild(collTitle)
+      // Create list element with the keys and values from the parsedList array
+      const ul = document.createElement('ul')
+      ul.setAttribute('class', 'list')
+      this.parsedList.forEach((element) => {
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(element))
+        ul.appendChild(li)
+      })
+      // Append the list element to the content container and append the collapsible and content container to the HTML document
+      content.appendChild(ul)
+      output.insertBefore(content, output.firstChild)
+      output.insertBefore(collapsible, output.firstChild)
+    } else {
+      alert("ERROR: An exception has occurred!")
+    }
+  }
+}
+
+// When the generate button is clicked, read the selected RPG file and process the data
 genButton.addEventListener('click', () => {
   let parsedList = []
   let filename = rpgSelect.options[rpgSelect.selectedIndex].value
@@ -25,31 +60,8 @@ genButton.addEventListener('click', () => {
       }
     }
   })
-  if (parsedList) {
-    // Create collapsible
-    const collapsible = document.createElement('button')
-    collapsible.setAttribute('class', 'collapsible')
-    // Create collapsible content container
-    const content = document.createElement('div')
-    content.setAttribute('class', 'content')
-    // Set collapsible title
-    let collTitle = document.createTextNode(filename)
-    collapsible.appendChild(collTitle)
-    // Create collapsible content
-    const ul = document.createElement('ul')
-    ul.setAttribute('class', 'list')
-    parsedList.forEach((element) => {
-      const li = document.createElement('li')
-      li.appendChild(document.createTextNode(element))
-      ul.appendChild(li)
-    })
-    // Collapsible creation
-    content.appendChild(ul)
-    output.appendChild(collapsible)
-    output.appendChild(content)
-  } else {
-    alert("ERROR: An exception has occurred!")
-  }
+  createColl = new RPGCollapsible(parsedList, filename)
+  createColl.present()
 })
 
 // Handles collapsible elements
