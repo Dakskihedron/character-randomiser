@@ -23,8 +23,10 @@ class RPGCollapsible {
       const content = document.createElement('div')
       content.setAttribute('class', 'content')
       // Set collapsible title
+      const collHyper = document.createElement('a')
+      collHyper.setAttribute('class', 'coll-a')
       let collTitle = document.createTextNode(this.filename)
-      collapsible.appendChild(collTitle)
+      collHyper.appendChild(collTitle)
       // Create list element with the keys and values from the parsedList array
       const ul = document.createElement('ul')
       ul.setAttribute('class', 'list')
@@ -35,10 +37,11 @@ class RPGCollapsible {
       })
       // Append the list element to the content container and append the collapsible and content container to the HTML document
       content.appendChild(ul)
+      collapsible.appendChild(collHyper)
       collDiv.appendChild(collapsible)
       output.insertBefore(content, output.firstChild)
       output.insertBefore(collDiv, output.firstChild)
-      collTracker.textContent = `${document.getElementsByClassName('coll-div').length}/10`
+      collTracker.textContent = `RPGs: ${document.getElementsByClassName('coll-div').length}/10`
     } else {
       alert("ERROR: An exception has occurred!")
     }
@@ -48,7 +51,7 @@ class RPGCollapsible {
 // When the generate button is clicked, read the selected RPG file and process the data
 genButton.addEventListener('click', () => {
   if (document.getElementsByClassName('coll-div').length == 10) {
-    alert(`You've reached the limit for generatable RPGs!`)
+    alert(`You've reached the limit for the RPGs that can be generated. Delete some by clicking their titles.`)
     return
   } else {
     let parsedList = []
@@ -86,5 +89,15 @@ document.querySelector('#output-container').addEventListener('click', function(e
       content.style.display = 'block'
       e.target.parentElement.style.marginBottom = '0px'
     }
+  }
+})
+
+// Handles deleting collapsible elements
+document.querySelector('#output-container').addEventListener('click', function(e) {
+  let coll = e.target.parentElement.parentElement
+  if (coll.classList.contains('coll-div')) {
+    coll.nextElementSibling.remove()
+    coll.remove()
+    collTracker.textContent = `RPGs: ${document.getElementsByClassName('coll-div').length}/10`
   }
 })
