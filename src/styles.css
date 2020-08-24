@@ -115,6 +115,10 @@ body {
     padding-bottom: auto;
 }
 
+.coll-a:hover {
+    text-decoration: line-through;
+}
+
 .active, .collapsible:hover {
     color: white;
     background-color: #9E6168;
