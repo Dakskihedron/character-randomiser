@@ -3,6 +3,7 @@ const { join } = require('path')
 // Declare HTML elements
 const genButton = document.getElementById('generate-button')
 const rpgSelect = document.getElementById('rpg-select')
+const collTracker = document.getElementById('coll-tracker')
 const output = document.getElementById('output-container')
 
 // RPG collapsible class
@@ -37,6 +38,7 @@ class RPGCollapsible {
       collDiv.appendChild(collapsible)
       output.insertBefore(content, output.firstChild)
       output.insertBefore(collDiv, output.firstChild)
+      collTracker.textContent = `${document.getElementsByClassName('coll-div').length}/10`
     } else {
       alert("ERROR: An exception has occurred!")
     }
@@ -45,26 +47,31 @@ class RPGCollapsible {
 
 // When the generate button is clicked, read the selected RPG file and process the data
 genButton.addEventListener('click', () => {
-  let parsedList = []
-  let filename = rpgSelect.options[rpgSelect.selectedIndex].value
-  let file = require(join(__dirname, '../resources/rpgs', `${filename}.json`))
-  Object.keys(file).forEach(function(k) {
-    if (Array.isArray(file[k])) { // Checks if data is an array
-      if (file[k].length) { // Checks if array is empty
-        parsedList.push(`${k}: ${file[k][Math.floor(Math.random() * file[k].length)]}`)
-      } else { // If the array is empty, throw an error message
-        parsedList.push(`${k}: ERROR: The array is empty.`)
+  if (document.getElementsByClassName('coll-div').length == 10) {
+    alert(`You've reached the limit for generatable RPGs!`)
+    return
+  } else {
+    let parsedList = []
+    let filename = rpgSelect.options[rpgSelect.selectedIndex].value
+    let file = require(join(__dirname, '../resources/rpgs', `${filename}.json`))
+    Object.keys(file).forEach(function(k) {
+      if (Array.isArray(file[k])) { // Checks if data is an array
+        if (file[k].length) { // Checks if array is empty
+          parsedList.push(`${k}: ${file[k][Math.floor(Math.random() * file[k].length)]}`)
+        } else { // If the array is empty, throw an error message
+          parsedList.push(`${k}: ERROR: The array is empty.`)
+        }
+      } else { // If data is not an array, then it is a number value
+        if (Number.isInteger(file[k])) { // Checks if data is an integer
+          parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
+        } else { // If the data is not an integer, throw an error message
+          parsedList.push(`${k}: ERROR: A valid integer was not provided.`)
+        }
       }
-    } else { // If data is not an array, then it is a number value
-      if (Number.isInteger(file[k])) { // Checks if data is an integer
-        parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
-      } else { // If the data is not an integer, throw an error message
-        parsedList.push(`${k}: ERROR: A valid integer was not provided.`)
-      }
-    }
-  })
-  createColl = new RPGCollapsible(parsedList, filename)
-  createColl.present()
+    })
+    createColl = new RPGCollapsible(parsedList, filename)
+    createColl.present()
+  }
 })
 
 // Handles collapsible elements
