@@ -51,7 +51,7 @@ class RPGCollapsible {
 // When the generate button is clicked, read the selected RPG file and process the data
 genButton.addEventListener('click', () => {
   if (document.getElementsByClassName('coll-div').length == 10) {
-    alert(`You've reached the limit for the RPGs that can be generated. Delete some by clicking their titles.`)
+    alert(`The RPG limit has been reached. RPGs can be deleted by clicking on their collapsible's titles.`)
     return
   } else {
     let parsedList = []
