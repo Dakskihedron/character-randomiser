@@ -56,9 +56,8 @@ function createWindow() {
   // Adds files in rpgs folder to select element
   win.webContents.once('dom-ready', () => {
     win.webContents.executeJavaScript(`
-      const path = require(join(app.getPath('userData'), '/Local Storage/config.json'))
       const { readdir } = require('fs')
-      readdir((path, (err, files) => {
+      readdir(rpgFiles, (err, files) => {
         if (err) return console.error(err)
         files.forEach(file => { 
           if (!file.endsWith('.json')) return
