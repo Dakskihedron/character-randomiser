@@ -1,6 +1,7 @@
 const { join } = require('path')
+const rpgFiles = join(process.env.APPDATA, '/character-randomiser/Local Storage/rpgs/')
 
-// Declare HTML elements
+// Reference HTML elements
 const genButton = document.getElementById('generate-button')
 const rpgSelect = document.getElementById('rpg-select')
 const collTracker = document.getElementById('coll-tracker')
@@ -48,7 +49,7 @@ class RPGCollapsible {
   }
 }
 
-// When the generate button is clicked, read the selected RPG file and process the data
+// When the generate button is clicked, read the selected RPG file and process the data, call RPG collapsible class preset() function
 genButton.addEventListener('click', () => {
   if (document.getElementsByClassName('coll-div').length == 10) {
     alert(`The RPG limit has been reached. RPGs can be deleted by clicking on their collapsible's titles.`)
@@ -56,7 +57,7 @@ genButton.addEventListener('click', () => {
   } else {
     let parsedList = []
     let filename = rpgSelect.options[rpgSelect.selectedIndex].value
-    let file = require(join(__dirname, '../resources/rpgs', `${filename}.json`))
+    let file = require(join(rpgFiles, `${filename}.json`))
     Object.keys(file).forEach(function(k) {
       if (Array.isArray(file[k])) { // Checks if data is an array
         if (file[k].length) { // Checks if array is empty
@@ -77,7 +78,7 @@ genButton.addEventListener('click', () => {
   }
 })
 
-// Handles collapsible elements
+// Handles opening and closing of collapsible elements
 document.querySelector('#output-container').addEventListener('click', function(e) {
   if (e.target.classList.contains('collapsible')) {
     e.target.classList.toggle('active')
