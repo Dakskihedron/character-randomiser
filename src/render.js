@@ -1,4 +1,5 @@
 const { join } = require('path')
+const { readdir } = require('fs') // Yes, readdir is being used, but in executeJavaScript() in main.js
 const rpgFiles = join(process.env.APPDATA, '/character-randomiser/Local Storage/rpgs/')
 
 // Reference HTML elements
@@ -57,22 +58,27 @@ genButton.addEventListener('click', () => {
   } else {
     let parsedList = []
     let filename = rpgSelect.options[rpgSelect.selectedIndex].value
-    let file = require(join(rpgFiles, `${filename}.json`))
-    Object.keys(file).forEach(function(k) {
-      if (Array.isArray(file[k])) { // Checks if data is an array
-        if (file[k].length) { // Checks if array is empty
-          parsedList.push(`${k}: ${file[k][Math.floor(Math.random() * file[k].length)]}`)
-        } else { // If the array is empty, throw an error message
-          parsedList.push(`${k}: ERROR: The array is empty.`)
+    try {
+      let file = require(join(rpgFiles, `${filename}.json`))
+      Object.keys(file).forEach(function(k) {
+        if (Array.isArray(file[k])) { // Checks if data is an array
+          if (file[k].length) { // Checks if array is empty
+            parsedList.push(`${k}: ${file[k][Math.floor(Math.random() * file[k].length)]}`)
+          } else { // If the array is empty, throw an error message
+            parsedList.push(`${k}: ERROR: The array is empty.`)
+          }
+        } else { // If data is not an array, then it is a number value
+          if (Number.isInteger(file[k])) { // Checks if data is an integer
+            parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
+          } else { // If the data is not an integer, throw an error message
+            parsedList.push(`${k}: ERROR: A valid integer was not provided.`)
+          }
         }
-      } else { // If data is not an array, then it is a number value
-        if (Number.isInteger(file[k])) { // Checks if data is an integer
-          parsedList.push(`${k}: ${Math.floor(Math.random() * file[k]) + 1}`)
-        } else { // If the data is not an integer, throw an error message
-          parsedList.push(`${k}: ERROR: A valid integer was not provided.`)
-        }
-      }
-    })
+      })
+    } catch (e) {
+      alert("ERROR: Missing JSON content.")
+      return
+    }
     createColl = new RPGCollapsible(parsedList, filename)
     createColl.present()
   }
