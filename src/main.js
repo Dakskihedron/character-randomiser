@@ -56,7 +56,11 @@ function createWindow() {
   // Adds files in rpgs folder to select element
   win.webContents.once('dom-ready', () => {
     win.webContents.executeJavaScript(`
-      readdir(rpgFiles, (err, files) => {
+    if (!fs.existsSync(rpgFiles)) {
+      fs.mkdirSync(rpgFiles)
+      fs.copyFileSync((join(__dirname, 'example-rpgs/example-one.json')), rpgFiles + '/example-one.json')
+      fs.copyFileSync((join(__dirname, 'example-rpgs/example-two.json')), rpgFiles + '/example-two.json')
+      fs.readdir(rpgFiles, (err, files) => {
         if (err) return console.error(err)
         files.forEach(file => { 
           if (!file.endsWith('.json')) return
@@ -68,6 +72,20 @@ function createWindow() {
           console.log(rpgName + " file loaded")
         })
       })
+    } else {
+      fs.readdir(rpgFiles, (err, files) => {
+        if (err) return console.error(err)
+        files.forEach(file => { 
+          if (!file.endsWith('.json')) return
+          let rpgName = file.split('.')[0]
+          const rpgSelect = document.getElementById("rpg-select")
+          let newOption = document.createElement("option")
+          newOption.text = rpgName
+          rpgSelect.add(newOption)
+          console.log(rpgName + " file loaded")
+        })
+      })
+    }
     `)
   })
 }
@@ -76,16 +94,6 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow)
-
-app.on('ready', () => {
-  if (!fs.existsSync(rpgFiles)) {
-    fs.mkdirSync(rpgFiles)
-    fs.copyFileSync((join(__dirname, 'example-rpgs/example-one.json')), rpgFiles + '/example-one.json')
-    fs.copyFileSync((join(__dirname, 'example-rpgs/example-two.json')), rpgFiles + '/example-two.json')
-  } else {
-    return
-  }
-})
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
