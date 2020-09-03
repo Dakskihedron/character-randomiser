@@ -56,7 +56,6 @@ function createWindow() {
   // Adds files in rpgs folder to select element
   win.webContents.once('dom-ready', () => {
     win.webContents.executeJavaScript(`
-      const { readdir } = require('fs')
       readdir(rpgFiles, (err, files) => {
         if (err) return console.error(err)
         files.forEach(file => { 
