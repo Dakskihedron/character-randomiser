@@ -1,5 +1,5 @@
 const { join } = require('path')
-const { readdir } = require('fs') // Yes, readdir is being used, but in executeJavaScript() in main.js
+const fs = require('fs') // Yes, fs is being used, but in executeJavaScript() in main.js
 const rpgFiles = join(process.env.APPDATA, '/character-randomiser/Local Storage/rpgs/')
 
 // Reference HTML elements
