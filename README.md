@@ -1,5 +1,5 @@
 # Character Randomiser
-A program for randomly generating character stats for role-playing games. Was a project for a school assessment and now that I've finished my assessment, I won't be updating it. Please don't use it, it's shit.
+A program for randomly generating character stats in role-playing games. Made for high school assessment where we had to demonstrate version control and agile software development methodologies. Will not be maintained.
 
 Dependencies:
 - Electron
